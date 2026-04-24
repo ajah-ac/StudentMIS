@@ -15,7 +15,7 @@ const toggleTheme=()=>{setTheme(prev=>prev!=='light'?'dark':'light')}
 }
 
 export default ThemeProvider
-const useThemeContext=()=>{
+export const useThemeContext=()=>{
     const context=useContext(themeContext)
     if(!context){
 throw new Error('useThemeContext must be used inside ThemeProvider')    }
