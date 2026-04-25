@@ -7,8 +7,15 @@ toggleTheme:()=>void
 const themeContext=createContext<Theme|null>(null)
 
 const ThemeProvider = ({children}:{children:React.ReactNode}) => {
-    const [theme,setTheme]=useState<'light' |'dark'>('light')
-const toggleTheme=()=>{setTheme(prev=>prev!=='light'?'dark':'light')}
+const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+  return (localStorage.getItem("theme") as 'light' | 'dark') || 'light';
+});const toggleTheme=()=>{
+  setTheme(prev=>{
+    const newtheme=prev==='light'?'dark':'light'
+  localStorage.setItem('theme',newtheme)
+  return newtheme
+})
+}
   return (
 <themeContext.Provider value={{theme,toggleTheme}}>{children}</themeContext.Provider>
   )

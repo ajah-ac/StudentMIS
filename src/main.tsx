@@ -5,6 +5,6 @@ import ThemeProvider from './contexts/ThemeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <ThemeProvider>
-    <App />
+    <App  />
   </ThemeProvider>,
 )
