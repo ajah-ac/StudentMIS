@@ -9,7 +9,7 @@ export const Navbar = () => {
 <nav className='flex justify-evenly gap-4 '>
     <NavLink to='/'>Register</NavLink>
     <NavLink to='/students'>Students</NavLink>
-    <button type="button" onClick={toggleTheme}>{theme==='light'?<Sun/>:<Moon/>}</button>
+    <button type="button" onClick={toggleTheme}>{theme==='light'?<Moon/>:<Sun/>}</button>
     
 </nav>
 
