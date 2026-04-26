@@ -29,7 +29,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
 
-      <form onSubmit={(e)=>e.preventDefault()} className="border rounded-2xl flex flex-col px-20 py-20 max-w-xl gap-4">
+      <form onSubmit={handleSubmit} className="border rounded-2xl flex flex-col px-20 py-20 max-w-xl gap-4">
         <input
           name='fullName'
           type="text"
@@ -53,14 +53,15 @@ const Register = () => {
         <select name="course"
           value={form.course}
           onChange={handleChange}
+          required
           id="">
-          <option value="" disabled selected>Select Course</option>
+          <option value="" disabled>Select Course</option>
           <option value="math">Math</option>
           <option value="science">Science</option>
           <option value="english">English</option>
           <option value="history">History</option>
         </select>
-        <button type='submit' onClick={handleSubmit}>Review </button>
+        <button type='submit'>Review </button>
       </form>
 
     </div>)
