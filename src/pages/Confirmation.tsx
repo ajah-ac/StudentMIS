@@ -1,10 +1,13 @@
+import { nanoid } from "nanoid"
 import { useEffect, useState } from "react"
-import { useLocation, useNavigate } from "react-router"
+import { useLocation, useNavigate } from "react-router-dom"
 type user={
   fullName:string,
   email:string,
   phone:string,
-  course:string
+  course:string,
+  id:string
+
 }
 const Confirmation = () => {
   const location=useLocation()
@@ -33,15 +36,16 @@ const storedList=localStorage.getItem('studentList')
   
   localStorage.setItem('studentList',JSON.stringify(studentList))
  },[studentList])
- if(!student) return <p> No student to reguster</p>
+ if(!student) return <p>Loading...</p>
  function onRegister(){
   if(!student) return 
-
-  const updatedList=[...studentList,student]
+  const studentWithID={...student,id:nanoid()}
+  const updatedList=[...studentList,studentWithID]
 setStudentList(updatedList)
 alert(`Student ${student.fullName} registered successfully`)
-navigate('/students',{state:data,replace:true})
- }
+localStorage.removeItem('studentForm')
+navigate('/students',{replace:true}) 
+}
   return (
     <div>
       

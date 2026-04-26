@@ -21,9 +21,10 @@ const Register = () => {
     setForm(location.state);
   }
   },[location.state])
+  
   function handleSubmit() {
     
-    navigate('/confirmation',{state:form})
+    navigate('/confirmation',{state:form,replace:true})
   }
   return (
     <div className="min-h-screen flex items-center justify-center">
