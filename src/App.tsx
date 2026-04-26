@@ -4,6 +4,7 @@ import Register from './pages/Register'
 import Students from './pages/Students'
 import Confirmation from './pages/Confirmation'
 import Course from './pages/Course'
+import CourseDetails from './components/CourseDetails'
 
 const router=createBrowserRouter([
   {path:'/',
@@ -23,10 +24,13 @@ const router=createBrowserRouter([
       },
       {
         path:'/course',
-        element:<Course/>
-      }
-    ]
-  }
+        element:<Course/>,
+      },
+          {
+path:'/course/:id',
+element:<CourseDetails/>
+        }]}
+      
 ])
 function App() {
 
