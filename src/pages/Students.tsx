@@ -49,7 +49,10 @@ const Students = () => {
       <div className=" max-w-6xl flex justify-center  m-auto px-4  mt-10">
 
         <input type="text"
-          className="px-10 outline-0 w-1/2  mx-auto shadow-md py-4 text-lg  mb-5 bg-gray-200 dark:bg-gray-800 rounded-4xl "
+          className="px-10 outline-0 w-1/2 
+           mx-auto shadow-md py-4 text-lg  mb-5
+           placeholder-black dark:placeholder-white
+            bg-gray-200 dark:bg-gray-800 rounded-4xl "
           value={search}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
           placeholder="Search for a student" />

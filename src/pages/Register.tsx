@@ -64,7 +64,7 @@ Object.values(errors).every(err=>err==='')
       <form onSubmit={handleSubmit} className=" shadow-2xl border  rounded-2xl flex flex-col px-10 py-20 max-w-xl gap-4">
         <input
           className="  
-          outline-0 rounded border-b px-8 py-3 "
+          outline-0 rounded border-b px-8 py-3  placeholder-black dark:placeholder-white"
           name='fullName'
           type="text"
           value={form.fullName}
