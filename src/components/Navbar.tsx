@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false)
   const closeMenu = () => setOpen(false)
   return (
-    <div className={` relative shadow-xl py-4 px-10 flex align-center justify-between `}>
+    <div className={` relative shadow-xl py-4 px-10 flex sm:text-xl lg:px-5 lg:py-5 lg:text-2xl align-center justify-between `}>
       <h1>StudentMis</h1>
       <nav className='sm:flex justify-evenly gap-4 hidden '>
         <NavLink to='/'>Register</NavLink>

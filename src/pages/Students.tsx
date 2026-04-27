@@ -1,4 +1,4 @@
-import { Trash } from "lucide-react"
+import { Eye, Trash } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 
@@ -35,13 +35,17 @@ const Students = () => {
     console.log(acc)
     return acc
   }, {})
+  const courseNavigate=(course:string)=>{
+   navigate(`/course/${course}`)
+       
+  }
 
   return (
     <>
     <div className=" max-w-6xl flex justify-center  m-auto px-4  mt-10">
 
          <input type="text"
-         className="px-10 outline-0   mx-auto shadow-md py-4 text-lg w-full bg-gray-200 dark:bg-gray-800 rounded-4xl "
+         className="px-10 outline-0 w-1/2  mx-auto shadow-md py-4 text-lg  bg-gray-200 dark:bg-gray-800 rounded-4xl "
         value={search}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
         placeholder="Search for a student" />
@@ -51,7 +55,8 @@ const Students = () => {
 
         <StudentsTable
           removeStudent={removeStudent}
-          studentList={filteredStudents} />)}
+          studentList={filteredStudents}
+          courseNavigate={courseNavigate} />)}
 
       <div className="border p-4 rounded shadow  w-1/2  m-auto ">
         <h1 className="font-bold">Total Students:<span className="font-normal">
@@ -65,9 +70,7 @@ const Students = () => {
              <p key={course}>
               {course}: {count}
             </p>
-      <button onClick={() => navigate(`/course/${course}`)}
-        className=" bg-gray-300 rounded-3xl dark:bg-gray-700  py-3 px-4 "
-        >View Course</button>
+   
          </div>
           ))}
         </div>
@@ -83,30 +86,36 @@ const Students = () => {
 type Props = {
   studentList: student[],
   removeStudent: (id: string) => void
+  courseNavigate:(course:string)=>void
 }
 export default Students
-const StudentsTable = ({ studentList, removeStudent }: Props) => {
+const StudentsTable = ({ studentList, removeStudent ,courseNavigate}: Props) => {
   return (
     <div className="overflow-x-auto p-4  w-full max-w-6xl mx-auto ">
       <table border={1} cellPadding={10} className=" w-full border border-gray-300" >
         <thead>
           <tr >
-            <th className='  p-4 border text-left'>Full Name</th>
-            <th className=' p-4 border text-left'>Email</th>
-            <th className='  p-4 border text-left'>Phone</th>
-            <th className=' p-4 border text-left'>Course</th>
-            <th className=' p-4 border text-left'>Remove Student</th>
+            <th className='  p-4 border-gray-400 border text-left'>Full Name</th>
+            <th className=' p-4 border  border-gray-400  text-left'>Email</th>
+            <th className='  p-4 border  border-gray-400  text-left'>Phone</th>
+            <th className=' p-4 border   border-gray-400  text-left'>Course</th>
+            <th className=' p-4 border border-gray-400  text-left'>Actions</th>
           </tr>
         </thead>
 
         <tbody>
           {studentList.map((student) => (
             <tr key={student.id}>
-              <td className=' p-4 border text-left'>{student.fullName}</td>
-              <td className=' p-4 border text-left'>{student.email}</td>
-              <td className=' p-4 border text-left'>{student.phone}</td>
-              <td className=' p-4 border text-left'>{student.course}</td>
-              <td className=' p-4 border text-left'><button onClick={() => removeStudent(student.id)}><Trash /></button></td>
+              <td className=' p-4 border-b  border-gray-400   text-left'>{student.fullName}</td>
+              <td className=' p-4 border-b text-left  border-gray-400 '>{student.email}</td>
+              <td className=' p-4 border-b text-left  border-gray-400 ' >{student.phone}</td>
+              <td className=' p-4 border-b  border-gray-400  text-left'>{student.course}</td>
+              <td className=' p-4 border-b  border-gray-400  text-left flex justify-evenly gap-4'>
+                   <button onClick={()=>courseNavigate(student.course)}
+        className=" bg-amber-100 rounded-3xl  text-gray-900 border-gray-300 w-1/2 py-2 flex justify-center "
+        ><Eye/></button>
+                <button    className=" bg-red-400 rounded-3xl py-2 flex justify-center border  border-gray-300 d w-1/2  "
+                onClick={() => removeStudent(student.id)}><Trash className="text-gray-900" /></button></td>
             </tr>
           ))}
         </tbody>
