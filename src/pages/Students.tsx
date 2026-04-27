@@ -38,10 +38,10 @@ const Students = () => {
 
   return (
     <>
-    <div className=" max-w-6xl flex justify-center  px-4  mt-10">
+    <div className=" max-w-6xl flex justify-center  m-auto px-4  mt-10">
 
          <input type="text"
-         className="px-10 outline-0  shadow-md py-4 text-lg w-full bg-gray-200 dark:bg-gray-800 rounded-4xl "
+         className="px-10 outline-0   mx-auto shadow-md py-4 text-lg w-full bg-gray-200 dark:bg-gray-800 rounded-4xl "
         value={search}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
         placeholder="Search for a student" />
@@ -53,24 +53,27 @@ const Students = () => {
           removeStudent={removeStudent}
           studentList={filteredStudents} />)}
 
-      <div className="border p-4 rounded shadow ">
+      <div className="border p-4 rounded shadow  w-1/2  m-auto ">
         <h1 className="font-bold">Total Students:<span className="font-normal">
           {studentList.length}
         </span></h1>
 
-        <div >
+        <div  >
           <h3 className="font-bold underline">Students per Course</h3>
           {Object.entries(studentsPerCourse).map(([course, count]) => (
-            <p key={course}>
+          <div>
+             <p key={course}>
               {course}: {count}
             </p>
+      <button onClick={() => navigate(`/course/${course}`)}
+        className=" bg-gray-300 rounded-3xl dark:bg-gray-700  py-3 px-4 "
+        >View Course</button>
+         </div>
           ))}
         </div>
       </div>
       <div className="p-4">
-      <button onClick={() => navigate('/course')}
-        className=" bg-gray-300 rounded-3xl dark:bg-gray-700  py-3 px-4 "
-        >View Course</button>
+
 
       </div> 
     </>
