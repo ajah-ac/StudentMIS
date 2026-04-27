@@ -11,7 +11,6 @@ type user={
 }
 const Confirmation = () => {
   const location=useLocation()
-  const data=location.state;
   const navigate=useNavigate()
   const [student,setStudent]=useState<user| null>(null)
   const [studentList,setStudentList]=useState<user[]>([])
@@ -25,13 +24,17 @@ const stored=localStorage.getItem('studentForm')
  if(stored){
     setStudent(JSON.parse(stored))
   }
+  else {
+      navigate('/', { replace: true })
+    }
   }
 const storedList=localStorage.getItem('studentList')
  
   if(storedList && storedList!=='undefined'){
       setStudentList(JSON.parse(storedList))}
+      
 
- },[location.state])
+ },[location.state,navigate])
  useEffect(()=>{
   
   localStorage.setItem('studentList',JSON.stringify(studentList))
@@ -60,7 +63,7 @@ navigate('/students',{replace:true})
 </div>
 <div className="flex  justify-between gap-4 w-1/3 ">
 <button 
-onClick={()=>{navigate('/',{state:data})}}
+onClick={()=>{navigate('/',{state:student})}}
 className="border w-50 py-1 rounded-2xl"
 >Edit</button>
 <button className="border w-50 py-1 rounded-2xl"

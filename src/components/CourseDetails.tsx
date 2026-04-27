@@ -31,10 +31,14 @@ if (!id || !(id in Alldescription)) {
   return <p>No description</p>;
 }
   return (
-    <div>CourseDetails
-<ul>Description:{Alldescription[id as keyof Alldescription].map((desc,i)=><li key={i}>{desc}</li>)}</ul>
-<div><h1>List of Enrolled Students</h1>
-<ul>{courseStudents.map((student:student)=><li key={student.id}> {student.fullName}</li>)}</ul>
+    <div className="sm:text-2xl w-full max-w-6xl  p-10 flex flex-col gap-4 ">
+       <h1 >
+  Course Description:
+  </h1>
+<ul className=" flex w-2/3 justify-between">
+{Alldescription[id as keyof Alldescription].map((desc,i)=><li key={i}>{desc}</li>)}</ul>
+<div><h1 className="border-b font-semibold pb-2">List of Enrolled Students</h1>
+<ol className="list-decimal pl-4 pt-2">{courseStudents.map((student:student)=><li key={student.id}> {student.fullName}</li>)}</ol>
 </div>
 
     </div>
