@@ -9,6 +9,9 @@ type student = {
   course: string,
   id: string
 }
+const courseCapital = (course: string) => {
+  return course[0].toUpperCase() + course.slice(1)
+}
 const Students = () => {
   const navigate = useNavigate()
   const [studentList, setList] = useState<student[]>([])
@@ -19,6 +22,7 @@ const Students = () => {
       setList(JSON.parse(storedList))
     }
   }, [])
+
 
   const removeStudent = (id: string) => {
     const filtered = studentList.filter(s => s.id !== id)
@@ -35,21 +39,21 @@ const Students = () => {
     console.log(acc)
     return acc
   }, {})
-  const courseNavigate=(course:string)=>{
-   navigate(`/course/${course}`)
-       
+  const courseNavigate = (course: string) => {
+    navigate(`/course/${course}`)
+
   }
 
   return (
     <>
-    <div className=" max-w-6xl flex justify-center  m-auto px-4  mt-10">
+      <div className=" max-w-6xl flex justify-center  m-auto px-4  mt-10">
 
-         <input type="text"
-         className="px-10 outline-0 w-1/2  mx-auto shadow-md py-4 text-lg  bg-gray-200 dark:bg-gray-800 rounded-4xl "
-        value={search}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
-        placeholder="Search for a student" />
-            </div>
+        <input type="text"
+          className="px-10 outline-0 w-1/2  mx-auto shadow-md py-4 text-lg  mb-5 bg-gray-200 dark:bg-gray-800 rounded-4xl "
+          value={search}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+          placeholder="Search for a student" />
+      </div>
 
       {filteredStudents.length === 0 ? (<p>No student found with Name:{search}</p>) : (
 
@@ -66,19 +70,19 @@ const Students = () => {
         <div  >
           <h3 className="font-bold underline">Students per Course</h3>
           {Object.entries(studentsPerCourse).map(([course, count]) => (
-          <div>
-             <p key={course}>
-              {course}: {count}
-            </p>
-   
-         </div>
+            <div>
+              <p key={course}>
+                {courseCapital(course)}: {count}
+              </p>
+
+            </div>
           ))}
         </div>
       </div>
       <div className="p-4">
 
 
-      </div> 
+      </div>
     </>
   )
 }
@@ -86,10 +90,10 @@ const Students = () => {
 type Props = {
   studentList: student[],
   removeStudent: (id: string) => void
-  courseNavigate:(course:string)=>void
+  courseNavigate: (course: string) => void
 }
 export default Students
-const StudentsTable = ({ studentList, removeStudent ,courseNavigate}: Props) => {
+const StudentsTable = ({ studentList, removeStudent, courseNavigate }: Props) => {
   return (
     <div className="overflow-x-auto p-4  w-full max-w-6xl mx-auto ">
       <table border={1} cellPadding={10} className=" w-full border border-gray-300" >
@@ -109,13 +113,26 @@ const StudentsTable = ({ studentList, removeStudent ,courseNavigate}: Props) => 
               <td className=' p-4 border-b  border-gray-400   text-left'>{student.fullName}</td>
               <td className=' p-4 border-b text-left  border-gray-400 '>{student.email}</td>
               <td className=' p-4 border-b text-left  border-gray-400 ' >{student.phone}</td>
-              <td className=' p-4 border-b  border-gray-400  text-left'>{student.course}</td>
-              <td className=' p-4 border-b  border-gray-400  text-left flex justify-evenly gap-4'>
-                   <button onClick={()=>courseNavigate(student.course)}
-        className=" bg-amber-100 rounded-3xl  text-gray-900 border-gray-300 w-1/2 py-2 flex justify-center "
-        ><Eye/></button>
-                <button    className=" bg-red-400 rounded-3xl py-2 flex justify-center border  border-gray-300 d w-1/2  "
-                onClick={() => removeStudent(student.id)}><Trash className="text-gray-900" /></button></td>
+              <td className=' p-4 border-b  border-gray-400  text-left '>
+                <div className=" flex justify-between px-2">
+                   <h1>{courseCapital(student.course)}</h1>
+
+    <button
+      onClick={() => courseNavigate(student.course)}
+      className="bg-amber-100 rounded-3xl text-gray-900 border-gray-300 p-2"
+    >
+      <Eye />
+    </button>
+  </div>
+              </td>
+              <td className="p-4 border-b border-gray-400 text-left">
+  <button
+    className="bg-red-400 rounded-3xl p-2 border border-gray-300"
+    onClick={() => removeStudent(student.id)}
+  >
+    <Trash className="text-gray-900" />
+  </button>
+</td>
             </tr>
           ))}
         </tbody>
