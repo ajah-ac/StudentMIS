@@ -64,7 +64,12 @@ Object.values(errors).every(err=>err==='')
       <form onSubmit={handleSubmit} className=" shadow-2xl border  rounded-2xl flex flex-col px-10 py-20 max-w-xl gap-4">
         <input
           className="  
-          outline-0 rounded border-b px-8 py-3  placeholder-black dark:placeholder-white"
+         w-full
+  outline-0
+  border-b px-8 py-3
+  bg-transparent
+  text-black dark:text-white
+  placeholder-gray-400 dark:placeholder-gray-500"
           name='fullName'
           type="text"
           value={form.fullName}
@@ -76,8 +81,13 @@ Object.values(errors).every(err=>err==='')
 )}
 
         <input
-          className=" outline-0 rounded border-b px-8 py-3 "
-          name='email'
+      className="  
+         w-full
+  outline-0
+  border-b px-8 py-3
+  bg-transparent
+  text-black dark:text-white
+  placeholder-gray-400 dark:placeholder-gray-500"          name='email'
           type="text"
           value={form.email}
           onChange={handleChange}
@@ -86,8 +96,14 @@ Object.values(errors).every(err=>err==='')
   <p className="text-red-500 text-sm">{errors.email}</p>
 )}
         <input
-          className=" rounded border-b px-8 py-3 "
-          value={form.phone}
+      className="  
+         w-full
+  outline-0
+  border-b px-8 py-3
+  bg-transparent
+  text-black dark:text-white
+  placeholder-gray-400 dark:placeholder-gray-500"
+            value={form.phone}
           onChange={handleChange}
           required name="phone"
           inputMode="numeric" 
